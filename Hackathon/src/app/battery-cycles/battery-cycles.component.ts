@@ -14,18 +14,17 @@ import { ActivatedRoute } from '@angular/router';
   ],
   template: `
 <section class="results">
-  <app-cycle *ngFor="let batteryDataCycles of batteryDataList"[batteryDataCycles]="batteryDataCycles"></app-cycle>
+  <app-cycle *ngFor="let batteryData of batteryDataCycles"[batteryData]="batteryData"></app-cycle>
 </section>
 `,
   styleUrls: ['./battery-cycles.component.css']
 })
 export class BatteryCyclesComponent {
-  route: ActivatedRoute = inject(ActivatedRoute);
-  batteryDataCycles: BatteryData[] = [];
   batteryControllerService: BatteryControllerService = inject(BatteryControllerService);
+  batteryDataCycles: BatteryData[] = [];
 
   constructor() {
-    const batteryDataId = String(this.route.snapshot.params['id']);
+    const batteryDataId = String(inject(ActivatedRoute).snapshot.params['mainid']);
     this.batteryDataCycles = this.batteryControllerService.getBatteryDataCyclesByMainId(batteryDataId);
   }
 }

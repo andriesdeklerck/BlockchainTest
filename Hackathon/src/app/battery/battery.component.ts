@@ -39,7 +39,7 @@ export class BatteryComponent {
 
   constructor() {
     const batteryDataId = String(this.route.snapshot.params['id']);
-    this.batteryData = this.batteryControllerService.getBatteryDataById(batteryDataId);
+    this.batteryData = this.batteryControllerService.getLastUpdatedBatteryDataByMainId(batteryDataId);
   }
 }
 

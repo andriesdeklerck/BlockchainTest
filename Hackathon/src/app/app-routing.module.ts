@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CreateComponent } from './create/create.component';
+import { FindComponent } from './find/find.component';
 import { BatteryComponent } from './battery/battery.component';
 import { BatteryCyclesComponent } from './battery-cycles/battery-cycles.component';
 
@@ -22,7 +23,12 @@ const routes: Routes = [
     title: 'Create'
   },
   {
-    path: 'battery/cycles/:id',
+    path: 'find',
+    component: FindComponent,
+    title: 'Find'
+  },
+  {
+    path: 'battery/cycles/:mainid',
     component: BatteryCyclesComponent,
     title: 'Cycles'
   }

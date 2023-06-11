@@ -163,6 +163,7 @@ var batteries = [
 @Injectable({
   providedIn: 'root'
 })
+
 export class BatteryControllerService {
   batteryDataList: BatteryData[] = batteries
 
@@ -170,8 +171,9 @@ export class BatteryControllerService {
     return this.batteryDataList.filter(batteryData => batteryData.MainId === id);
   }
 
-  getBatteryDataById(id: string): BatteryData | undefined {
-    return this.batteryDataList.find(batteryData => batteryData.Id === id);
+  getLastUpdatedBatteryDataByMainId(id: string): BatteryData | undefined {
+    var a : BatteryData[] = this.batteryDataList.filter(batteryData => batteryData.MainId === id);
+    return a[a.length - 1];
   }
 
   constructor() { }
