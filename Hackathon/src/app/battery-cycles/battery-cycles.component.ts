@@ -24,7 +24,7 @@ export class BatteryCyclesComponent {
   batteryDataCycles: BatteryData[] = [];
 
   constructor() {
-    const batteryDataId = String(inject(ActivatedRoute).snapshot.params['mainid']);
-    this.batteryDataCycles = this.batteryControllerService.getBatteryDataCyclesByMainId(batteryDataId);
+    const batteryDataId = String(inject(ActivatedRoute).snapshot.params['address']);
+    this.batteryDataCycles = this.batteryControllerService.getBatteryDataCyclesByAddress(batteryDataId);
   }
 }

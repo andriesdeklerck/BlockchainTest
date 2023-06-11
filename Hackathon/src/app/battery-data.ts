@@ -1,6 +1,6 @@
 export interface BatteryData {
   Id: string;
-  MainId: string;
+  Address: string;
   CycleIndex: number;
   DischargeTime: number;
   TimeAt4_15V: number;

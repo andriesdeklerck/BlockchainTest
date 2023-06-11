@@ -25,7 +25,7 @@ import { RouterModule } from '@angular/router';
       <li>Data 2: {{batteryData?.TimeConstantCurrent}}</li>
       <li>Data 3: {{batteryData?.DecrementTime}}</li>
     </ul>
-    <a [routerLink]="['/battery/cycles', batteryData?.MainId]">See Details</a>
+    <a [routerLink]="['/battery/cycles', batteryData?.Address]">See Details</a>
   </section>
 </article>
 `,
@@ -38,9 +38,7 @@ export class BatteryComponent {
   @Input() batteryData!: BatteryData | undefined;
 
   constructor() {
-    const batteryDataId = String(this.route.snapshot.params['id']);
-    this.batteryData = this.batteryControllerService.getLastUpdatedBatteryDataByMainId(batteryDataId);
+    const batteryDataId = String(this.route.snapshot.params['address']);
+    this.batteryData = this.batteryControllerService.getLastUpdatedBatteryDataByAddress(batteryDataId);
   }
 }
-
-

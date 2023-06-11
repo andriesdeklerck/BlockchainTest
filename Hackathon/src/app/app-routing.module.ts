@@ -13,7 +13,7 @@ const routes: Routes = [
     title: 'Home'
   },
   {
-    path: 'battery/:id',
+    path: 'battery/:address',
     component: BatteryComponent,
     title: 'Battery'
   },
@@ -28,7 +28,7 @@ const routes: Routes = [
     title: 'Find'
   },
   {
-    path: 'battery/cycles/:mainid',
+    path: 'battery/cycles/:address',
     component: BatteryCyclesComponent,
     title: 'Cycles'
   }
