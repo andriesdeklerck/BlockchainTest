@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BatteryControllerService } from '../battery-controller.service';
-import { OrbitdbControllerService } from '../orbitdb-controller.service';
+import { ContractService } from '../contract.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BatteryData } from '../battery-data';
 
@@ -57,8 +57,7 @@ import { BatteryData } from '../battery-data';
 export class CreateComponent {
   batteryData: BatteryData | undefined;
   batteryControllerService = inject(BatteryControllerService);
-  orbitdbControllerService = inject(OrbitdbControllerService);
-
+  contractService = inject(ContractService);
 
   applyForm = new FormGroup({
     Address: new FormControl(),
@@ -85,10 +84,11 @@ export class CreateComponent {
       RemainingUsefulLife: this.applyForm.value.RemainingUsefulLife ?? 0,
       TimeAt4_15V: this.applyForm.value.TimeAt4_15V ?? 0,
       TimeConstantCurrent: this.applyForm.value.TimeConstantCurrent ?? 0,
-      Address: this.applyForm.value.Address ?? 0,
+      Address: this.applyForm.value.Address ?? "",
     };
 
-    // this.orbitdbControllerService.AddSingleDataEntry(this.batteryData);
+    // this.contractService.create(this.batteryData);
+    this.contractService.create();
 
     this.batteryControllerService.addNewBattery(
       this.applyForm.value.Address ?? 0,

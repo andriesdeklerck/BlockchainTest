@@ -186,19 +186,20 @@ export class BatteryControllerService {
     maxVoltageDischarge: number,
     minVoltageDischarge: number,
     chargeTime: number,
-    remainingUsefulLife: number) {
-    console.log(`
-    Id: 123,
-    Address: ${address},
-    cycleIndex: ${cycleIndex},
-    dischargeTime: ${dischargeTime},
-    timeAt4_15V: ${timeAt4_15V},
-    timeConstantCurrent: ${timeConstantCurrent},
-    maxVoltageDischarge: ${maxVoltageDischarge},
-    minVoltageDischarge: ${minVoltageDischarge},
-    remainingUsefulLife: ${remainingUsefulLife},
-    chargeTime: ${chargeTime},
-    decrementTime: ${decrementTime}.`);
+    remainingUsefulLife: number)
+    {
+    // console.log(`
+    //   Id: 123,
+    //   Address: ${address},
+    //   cycleIndex: ${cycleIndex},
+    //   dischargeTime: ${dischargeTime},
+    //   timeAt4_15V: ${timeAt4_15V},
+    //   timeConstantCurrent: ${timeConstantCurrent},
+    //   maxVoltageDischarge: ${maxVoltageDischarge},
+    //   minVoltageDischarge: ${minVoltageDischarge},
+    //   remainingUsefulLife: ${remainingUsefulLife},
+    //   chargeTime: ${chargeTime},
+    //   decrementTime: ${decrementTime}.`);
   }
 
   constructor() { }
