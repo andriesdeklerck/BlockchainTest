@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-find',
@@ -20,7 +22,7 @@ import { RouterModule } from '@angular/router';
         <label for="Address">Address</label>
         <input id="Address" type="text" formControlName="Address">
 
-        <a [routerLink]="['/battery', address]"><button type="submit" class="primary">Get battery data.</button></a>
+        <button type="submit" class="primary">Get battery data.</button>
       </form>
     </section>
   </article>
@@ -33,9 +35,9 @@ export class FindComponent {
     Address: new FormControl(),
   });
 
-  @Input() address!: string;
-
   submitApplication() {
-    this.address = this.applyForm.value.Address ?? '';
+    this.router.navigate(['/battery', this.applyForm.value.Address]);
   }
+
+  constructor(private router: Router) {}
 }

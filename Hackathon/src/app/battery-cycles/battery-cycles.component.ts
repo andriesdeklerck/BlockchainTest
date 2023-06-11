@@ -20,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./battery-cycles.component.css']
 })
 export class BatteryCyclesComponent {
+  route: ActivatedRoute = inject(ActivatedRoute);
   batteryControllerService: BatteryControllerService = inject(BatteryControllerService);
   batteryDataCycles: BatteryData[] = [];
 
