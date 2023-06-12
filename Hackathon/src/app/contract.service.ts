@@ -1,43 +1,62 @@
 import { Injectable } from '@angular/core';
-import { BatteryData } from './battery-data';
-// import { ethers } from "ethers";
-// import {ProviderDetector} from 'web3-providers';
-import { Web3, Web3BaseProvider } from 'web3';
-import web3 from 'web3/lib/commonjs/web3';
+import Web3 from 'web3';
+import contract from '@truffle/contract';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ContractService {
+  web3!: Web3;
+  myContract: any;
+
   constructor() {
+    if (typeof window.ethereum !== 'undefined') {
+      this.web3 = new Web3(window.ethereum);
+      this.initContract();
+    } else {
+      console.log('Please install MetaMask or enable Ethereum in your browser.');
+    }
+  }
+
+  async initContract() {
+    // Set the provider for the contract
+    this.myContract = contract({
+      // Contract ABI and bytecode
+    });
+    this.myContract.setProvider(this.web3.currentProvider);
+
+    // Additional setup or operations with the contract
+  }
+
+  async create() {
+    try {
+      const contractInstance = await this.myContract.deployed();
+      const result = await contractInstance.AddNewData(5);
+
+      console.log('Contract method result:', result);
+    } catch (error) {
+      console.error('Failed to call contract method:', error);
+    }
   }
 
   async loadContract() {
-  }
+    try {
+      // Contract JSON and address
+      const contractJSON = require('../assets/contracts/contract.json');
+      const contractAddress = '0xf57A73d325AbAe4f89e1d03d61C5b0276733B40F';
 
-  async loadWeb3() {
-    provider: any = new web3.providers.HttpProvider()
-    //const provider = await Web3BaseProvider
-    //const provider = ProviderDetector.detect();
-    //const web3 = new Web3(provider?.toString());
-    //const provider = new ethers.(window.ethereum);
-    //const provider = new ethers.Web3Provider();
-    // ethers.
+      // Load the contract
+      this.myContract = contract(contractJSON);
+      this.myContract.setProvider(this.web3.currentProvider);
+      this.myContract.defaults({
+        from: await this.web3.eth.getAccounts()
+      });
 
-    // await provider.send("eth_requestAccounts", []);
-    // signer = await provider.getSigner();
-    // const account = await signer.getAddress();
-
-    //console.log(`Your account is ${provider?.toString}`);
-
-    // this.loadContract();
-  }
-  // batteryData: BatteryData
-  async create() {
-    this.loadWeb3();
-    var result: number = 50;
-
-    //await contract.functions.AddNewData(result);
+      // At this point, you can access the contract's methods and events
+      console.log('Contract loaded:', this.myContract);
+    } catch (error) {
+      console.error('Failed to load contract:', error);
+    }
   }
 }
